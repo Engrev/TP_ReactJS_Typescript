@@ -1,6 +1,12 @@
+## [v1.0.2](https://github.com/Engrev/Hevy/releases/tag/v1.0.2)
+
+### React configuration
+
+> Released on 2024-06-05
+
 ## [v1.0.1](https://github.com/Engrev/Hevy/releases/tag/v1.0.1)
 
-### [Configuration 🔧]()
+### [Configuration 🔧](https://github.com/Engrev/Hevy/commit/0efadaa6146b3cd10068540ae146532ef035f562)
 
 > Released on 2024-06-04
 
