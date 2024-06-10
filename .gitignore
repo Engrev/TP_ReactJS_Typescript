@@ -1,6 +1,7 @@
 
 ###> local ###
 /.idea
+NUL
 ###< local ###
 
 ###> symfony/framework-bundle ###

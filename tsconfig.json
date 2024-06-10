@@ -1,24 +1,46 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        // The target setting changes which JS features are downleveled and which are left intact.
+        "target": "es2022",
         "lib": [
             "dom",
             "dom.iterable",
             "esnext"
         ],
         "types": ["@testing-library/jest-dom"],
+        // Allow JavaScript files to be imported inside your project, instead of just .ts and .tsx files.
         "allowJs": true,
+        // Skip type checking of declaration files.
         "skipLibCheck": true,
+        // By default (with false or not set) TypeScript treats CommonJS/AMD/UMD modules similar to ES6 modules.
         "esModuleInterop": true,
+        // When set to true, allowSyntheticDefaultImports allows you to write an import like :
+        // import React from "react";
+        // instead of :
+        // import * as React from "react";
         "allowSyntheticDefaultImports": true,
+        // The strict flag enables a wide range of type checking behavior that results in stronger guarantees of program correctness.
         "strict": true,
+        // TypeScript follows the case sensitivity rules of the file system it’s running on.
         "forceConsistentCasingInFileNames": true,
+        // Report errors for fallthrough cases in switch statements.
+        // Ensures that any non-empty case inside a switch statement includes either break, return, or throw.
+        // This means you won’t accidentally ship a case fallthrough bug.
         "noFallthroughCasesInSwitch": true,
+        // Sets the module system for the program.
         "module": "esnext",
-        "moduleResolution": "node",
+        // Spécifiez la stratégie de résolution du module.
+        // 'bundler' for use with bundlers. Like node16 and nodenext, this mode supports package.json "imports" and "exports",
+        // but unlike the Node.js resolution modes, bundler never requires file extensions on relative paths in imports.
+        "moduleResolution": "bundler",
+        // Allows importing modules with a .json extension, which is a common practice in node projects.
+        // This includes generating a type for the import based on the static JSON shape.
         "resolveJsonModule": true,
         "isolatedModules": true,
+        // Do not emit compiler output files like JavaScript source code, source-maps or declarations.
         "noEmit": false,
+        // Controls how JSX constructs are emitted in JavaScript files.
+        // This only affects output of JS files that started in .tsx files.
         "jsx": "react-jsx"
     },
     "include": [

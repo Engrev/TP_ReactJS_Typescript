@@ -1,3 +1,9 @@
+## [v1.0.4](https://github.com/Engrev/Hevy/releases/tag/v1.0.4)
+
+### Minor updates
+
+> Released on 2024-06-10
+
 ## [v1.0.3](https://github.com/Engrev/Hevy/releases/tag/v1.0.3)
 
 ### Creation of Exercise, Folder and Routine entities
