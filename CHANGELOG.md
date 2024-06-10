@@ -1,6 +1,12 @@
+## [v1.0.3](https://github.com/Engrev/Hevy/releases/tag/v1.0.3)
+
+### Creation of Exercise, Folder and Routine entities
+
+> Released on 2024-06-10
+
 ## [v1.0.2](https://github.com/Engrev/Hevy/releases/tag/v1.0.2)
 
-### React configuration
+### [React configuration](https://github.com/Engrev/Hevy/commit/87a4c3c1a622dc6a1c70ddf7fe85b09f451a4509)
 
 > Released on 2024-06-05
 
