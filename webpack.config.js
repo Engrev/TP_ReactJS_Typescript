@@ -1,9 +1,10 @@
-const Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore')
+const webpack = require('webpack')
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev')
 }
 
 Encore
@@ -49,8 +50,8 @@ Encore
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
+        config.useBuiltIns = 'usage'
+        config.corejs = '3.23'
     })
 
     // enables Sass/SCSS support
@@ -68,6 +69,27 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
 
-module.exports = Encore.getWebpackConfig();
+    // enables process in React files
+    .addPlugin(
+        new webpack.DefinePlugin({
+            process: {
+                env: {
+                    REACT_APP_API_URL: JSON.stringify(
+                        Encore.isProduction()
+                            ? 'https://hevy.engrev.fr/api'
+                            : 'http://hevy.wsl/api',
+                    ),
+                },
+            },
+        }),
+    )
+
+    .copyFiles({
+        from: './assets/app/img/exercises',
+        //to: 'images/[path][name].[hash:8].[ext]',
+        to: 'images/[path][name].[ext]',
+        pattern: /\.(jpe?g|png|svg|mp4)$/,
+    })
+
+module.exports = Encore.getWebpackConfig()

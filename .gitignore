@@ -1,7 +1,8 @@
-
 ###> local ###
-/.idea
+.idea
 NUL
+.npmrc
+assets/app/img/exercises
 ###< local ###
 
 ###> symfony/framework-bundle ###

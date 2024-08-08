@@ -1,12 +1,24 @@
+## [v1.0.5](https://github.com/Engrev/Hevy/releases/tag/v1.0.5)
+
+### React updates
+
+> Released on 2024-08-08
+
+- Creating PHP entities in React.
+- Creating the Exercises page.
+- Creating the useFetch hook.
+- Styles.
+- Upgrade dependencies.
+
 ## [v1.0.4](https://github.com/Engrev/Hevy/releases/tag/v1.0.4)
 
-### Minor updates
+### [Minor updates](https://github.com/Engrev/Hevy/commit/81b502def358476966c452b36b2c78d04bbc77de)
 
 > Released on 2024-06-10
 
 ## [v1.0.3](https://github.com/Engrev/Hevy/releases/tag/v1.0.3)
 
-### Creation of Exercise, Folder and Routine entities
+### [Creation of Exercise, Folder and Routine entities](https://github.com/Engrev/Hevy/commit/1435c1d1887640fac733948aa49a074bb7fb79e2)
 
 > Released on 2024-06-10
 
