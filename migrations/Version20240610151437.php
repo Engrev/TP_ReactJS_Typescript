@@ -26,7 +26,7 @@ final class Version20240610151437 extends AbstractMigration
         $this->addSql('ALTER TABLE hevy_routines ADD CONSTRAINT FK_4B827DB7162CB942 FOREIGN KEY (folder_id) REFERENCES hevy_folders (id)');
         $this->addSql('ALTER TABLE routine_exercise ADD CONSTRAINT FK_50CE302AF27A94C7 FOREIGN KEY (routine_id) REFERENCES hevy_routines (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE routine_exercise ADD CONSTRAINT FK_50CE302AE934951A FOREIGN KEY (exercise_id) REFERENCES hevy_exercises (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE hevy_exercises ADD comment VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE hevy_exercises ADD comment VARCHAR(255) DEFAULT NULL AFTER other_muscles');
         $this->addSql('ALTER TABLE hevy_exercises RENAME INDEX uniq_8e6aea7d5e237e06 TO UNIQ_924C490D5E237E06');
     }
 

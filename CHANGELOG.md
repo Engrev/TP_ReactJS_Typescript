@@ -1,6 +1,15 @@
+## [v1.0.6](https://github.com/Engrev/Hevy/releases/tag/v1.0.6)
+
+### API updates
+
+> Released on 2024-08-08
+
+- Creating Training entity.
+- Upgrade dependencies.
+
 ## [v1.0.5](https://github.com/Engrev/Hevy/releases/tag/v1.0.5)
 
-### React updates
+### [React updates](https://github.com/Engrev/Hevy/commit/55e2d461a6c122239c49fc7fd430e64d7dbb2ee1)
 
 > Released on 2024-08-08
 
@@ -8,7 +17,6 @@
 - Creating the Exercises page.
 - Creating the useFetch hook.
 - Styles.
-- Upgrade dependencies.
 
 ## [v1.0.4](https://github.com/Engrev/Hevy/releases/tag/v1.0.4)
 
