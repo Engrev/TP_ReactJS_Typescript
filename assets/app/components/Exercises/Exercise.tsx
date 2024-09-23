@@ -26,31 +26,31 @@ function Exercise({ exercise }: ExerciseProps) {
                         )}
                     </div>
                     <div className="col-12 col-lg-6">
-                        {exercise.image.match(/(mp4|webm)$/) ? (
-                            <video
-                                loop
-                                autoPlay
-                                playsInline
-                                className="rounded img-fluid d-block mx-auto"
-                            >
-                                {/*<source
-                                    src="https://pump-app.s3.eu-west-2.amazonaws.com/exercise-assets/08571201-Wheel-Rollout_Waist.webm"
-                                    type="video/webm"
-                                />*/}
-                                <source
-                                    src={`/build/images/${exercise.image}`}
-                                    type="video/mp4"
-                                />
-                            </video>
-                        ) : (
-                            <div className="bg-white p-5 rounded">
+                        <div
+                            className={
+                                exercise.image.startsWith('default')
+                                    ? 'img-container img-default'
+                                    : 'img-container'
+                            }
+                        >
+                            {exercise.image.match(/(mp4|webm)$/) ? (
+                                <video loop autoPlay playsInline width="100%">
+                                    {/*<source
+                                        src="https://pump-app.s3.eu-west-2.amazonaws.com/exercise-assets/08571201-Wheel-Rollout_Waist.webm"
+                                        type="video/webm"
+                                    />*/}
+                                    <source
+                                        src={`/build/images/${exercise.image}`}
+                                        type="video/mp4"
+                                    />
+                                </video>
+                            ) : (
                                 <img
                                     src={`/build/images/${exercise.image}`}
                                     alt={exercise.name}
-                                    className="img-fluid d-block mx-auto"
                                 />
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

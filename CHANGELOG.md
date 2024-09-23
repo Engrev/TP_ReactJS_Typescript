@@ -1,6 +1,12 @@
+## [v1.0.7](https://github.com/Engrev/Hevy/releases/tag/v1.0.7)
+
+### Exercises' img style and upgrade dependencies
+
+> Released on 2024-09-23
+
 ## [v1.0.6](https://github.com/Engrev/Hevy/releases/tag/v1.0.6)
 
-### API updates
+### [API updates](https://github.com/Engrev/Hevy/commit/60684c650f9578c194b923cd5bdd81e98feaba02)
 
 > Released on 2024-08-08
 
