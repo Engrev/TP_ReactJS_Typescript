@@ -1,0 +1,106 @@
+:root {
+    --routines-border-color: #2D2F32;
+    --routines-card-border-radius: 8px;
+    --routines-card-bg-color: #1F2022;
+}
+
+#routines .routines-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: var(--routines-card-border-radius);
+    background-color: var(--routines-card-bg-color);
+    border: 1px solid var(--routines-border-color);
+    padding: 24px;
+}
+#routines .routines-menu .nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--routines-border-color);
+    background-color: var(--routines-border-color);
+    border-radius: 6px;
+    height: 45px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    pointer-events: auto;
+    outline: none;
+}
+#routines .routines-menu .nav-link svg { color: var(--theme-primary); margin-right: 8px; font-size: 24px; }
+#routines .list {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f2022;
+    border-radius: 8px;
+    border: 1px solid #2d2f32;
+}
+#routines .list .folders-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    padding: 0 8px 20px;
+}
+#routines .list .folder {
+    display: flex;
+    flex: 1 1 0;
+    background-color: #232425;
+    margin-top: 8px;
+    padding: 0 16px 16px;
+    border-radius: 8px;
+}
+#routines .list .folder .folder-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+}
+#routines .list .folder .folder-container svg { font-size: 30px; color: var(--theme-primary); }
+#routines .list .folder .folder-container .folder-header {
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+#routines .list .folder .folder-container .folder-header > p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+    margin: 0;
+}
+#routines .list .folder .folder-container .folder-routines {
+    /*display: flex;
+    flex-direction: column;
+    flex: 1 1 0;*/
+    min-height: 16px;
+}
+#routines .list .folder .folder-container .folder-routines .routine {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    border-radius: 8px;
+    border: 1px solid #2d2f32;
+    margin-top: 16px;
+    background-color: #292b2f;
+}
+#routines .list .folder .folder-container .folder-routines .routine a {
+    flex: 1 1 0;
+    text-decoration: none;
+}
+#routines .list .folder .folder-container .folder-routines .routine a .routine-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 8px;
+}
+#routines .list .folder .folder-container .folder-routines .routine a .routine-content p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: white;
+    margin: 0;
+}

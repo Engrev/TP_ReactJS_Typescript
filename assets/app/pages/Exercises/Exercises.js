@@ -1,4 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ApiResponse } from '../../class/ApiResponse';
@@ -72,6 +72,6 @@ function Exercises() {
     if (errorExercises || errorExercise) {
         return (_jsx("section", { id: "exercises", children: _jsx("div", { className: "row", children: _jsxs("div", { className: "col-12 col-lg-10", children: [_jsx("h2", { children: "Exercise" }), _jsx("p", { children: "Oups il y a eu un probl\u00E8me." })] }) }) }));
     }
-    return (_jsx("section", { id: "exercises", children: _jsxs("div", { className: "row", children: [_jsxs("div", { className: "col-12 col-lg-9", children: [_jsx("h2", { children: "Exercise" }), isLoadingExercises || isLoadingExercise ? (_jsx("div", { className: "d-flex justify-content-center", children: _jsx(Loader, {}) })) : (_jsx("div", { children: Object.keys(exercise).length > 0 ? (_jsx(ExerciseComponent, { exercise: exercise })) : (_jsx("div", { className: "exercise-container", children: _jsxs("div", { className: "select-exercise", children: [_jsx("i", { className: "fa-regular fa-dumbbell" }), _jsx("h6", { children: "Select Exercise" }), _jsx("p", { children: "Click on an exercise to see statistics about it." })] }) })) }))] }), _jsx("div", { className: "col-12 col-lg-3", children: _jsx(LibraryComponent, { exercises: exercises }) })] }) }));
+    return (_jsx("section", { id: "exercises", children: _jsxs("div", { className: "row", children: [_jsxs("div", { className: "col-12 col-lg-9", children: [_jsx("h2", { children: "Exercise" }), isLoadingExercises || isLoadingExercise ? (_jsx("div", { className: "d-flex justify-content-center", children: _jsx(Loader, {}) })) : (_jsx(_Fragment, { children: Object.keys(exercise).length > 0 ? (_jsx(ExerciseComponent, { exercise: exercise })) : (_jsx("div", { className: "exercise-container", children: _jsxs("div", { className: "select-exercise", children: [_jsx("i", { className: "fa-regular fa-dumbbell" }), _jsx("h6", { children: "Select Exercise" }), _jsx("p", { children: "Click on an exercise to see statistics about it." })] }) })) }))] }), _jsx("div", { className: "col-12 col-lg-3", children: _jsx(LibraryComponent, { exercises: exercises }) })] }) }));
 }
 export default Exercises;

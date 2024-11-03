@@ -61,7 +61,7 @@ header .nav .nav-link {
 }
 header .nav .nav-link:not(.active):hover { background-color: var(--theme-backgroundHover); }
 header .nav .nav-link.active { background-color: var(--theme-background); color: var(--theme-primary); }
-header .nav .nav-link svg { width: 20px; }
+header .nav .nav-link svg { width: 20px; font-size: 24px; }
 
 @media (min-width: 1024px) {
     main .page { width: calc(100vw - 256px); height: 100vh; }

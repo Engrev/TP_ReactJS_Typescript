@@ -7,16 +7,16 @@ export class ApiResponse {
     ldContext: string
     ldId: string
     ldType: string
-    hydraMember: Array<Exercise | Training | Folder | Routine | object> = []
     hydraTotalItems: number
+    hydraMember: Array<Exercise | Training | Folder | Routine | object> = []
     hydraView: object
 
     constructor(data: any) {
         this.ldContext = data['@context']
         this.ldId = data['@id']
         this.ldType = data['@type']
-        //this.hydraMember = data['hydra:member']
         this.hydraTotalItems = data['hydra:totalItems']
+        //this.hydraMember = data['hydra:member']
         this.hydraView = data['hydra:view']
 
         data['hydra:member'].forEach(

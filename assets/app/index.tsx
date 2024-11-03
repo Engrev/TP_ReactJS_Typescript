@@ -6,6 +6,7 @@ import './index.css'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import Routines from './pages/Routines/Routines'
+import NewRoutine from './pages/Routines/NewRoutine'
 import Exercises from './pages/Exercises/Exercises'
 import Profile from './pages/Profile/Profile'
 import Error from './components/Error/Error'
@@ -23,6 +24,14 @@ root.render(
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/routines" element={<Routines />} />
+                            <Route
+                                path="/routines/:routinesId"
+                                element={<Routines />}
+                            />
+                            <Route
+                                path="/routines/new"
+                                element={<NewRoutine />}
+                            />
                             <Route path="/exercises" element={<Exercises />} />
                             <Route
                                 path="/exercises/:exerciseId"
@@ -34,6 +43,7 @@ root.render(
                         </Routes>
                     </div>
                 </div>
+                <div className="ReactModalPortal"></div>
             </main>
         </Router>
     </React.StrictMode>,

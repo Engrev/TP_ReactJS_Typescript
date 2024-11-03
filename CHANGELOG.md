@@ -1,6 +1,12 @@
+## [v1.0.8](https://github.com/Engrev/Hevy/releases/tag/v1.0.8)
+
+### [Routine management]()
+
+> Released on 2024-11-03
+
 ## [v1.0.7](https://github.com/Engrev/Hevy/releases/tag/v1.0.7)
 
-### Exercises' img style and upgrade dependencies
+### [Exercises' img style and upgrade dependencies](https://github.com/Engrev/Hevy/commit/8884f3e8a03f7f7e6bc045125580d323a9bb8e61)
 
 > Released on 2024-09-23
 

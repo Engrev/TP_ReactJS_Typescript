@@ -6,13 +6,15 @@ import { Loader } from '../../components/Loader/Loader'
 import './home.css'
 
 function Home() {
-    const { data, isLoading, error } = useFetch(
-        `${process.env.REACT_APP_API_URL}/trainings`,
-    )
-    console.info(data)
+    /*const {
+        data: responseData,
+        isLoading,
+        error,
+    } = useFetch(`${process.env.REACT_APP_API_URL}/trainings`)
+    console.info(responseData)
     // @ts-ignore
     const trainings: Training[] =
-        data instanceof ApiResponse ? data.hydraMember : []
+        responseData instanceof ApiResponse ? responseData.hydraMember : []
     console.info(trainings)
 
     if (error) {
@@ -27,7 +29,7 @@ function Home() {
                 </div>
             </section>
         )
-    }
+    }*/
 
     return (
         <section id="home">
@@ -35,7 +37,7 @@ function Home() {
                 <div className="col-12 col-lg-10">
                     <h1>Home</h1>
 
-                    {isLoading ? (
+                    {/*{isLoading ? (
                         <div className="d-flex justify-content-center">
                             <Loader />
                         </div>
@@ -46,7 +48,7 @@ function Home() {
                                 exercises={training.exercises}
                             />
                         ))
-                    )}
+                    )}*/}
                 </div>
                 <div className="col-12 col-lg-2"></div>
             </div>

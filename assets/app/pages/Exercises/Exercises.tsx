@@ -94,7 +94,7 @@ function Exercises() {
                             <Loader />
                         </div>
                     ) : (
-                        <div>
+                        <>
                             {Object.keys(exercise).length > 0 ? (
                                 <ExerciseComponent exercise={exercise} />
                             ) : (
@@ -109,7 +109,7 @@ function Exercises() {
                                     </div>
                                 </div>
                             )}
-                        </div>
+                        </>
                     )}
                 </div>
                 <div className="col-12 col-lg-3">

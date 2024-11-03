@@ -6,15 +6,15 @@ export class ApiResponse {
     ldContext;
     ldId;
     ldType;
-    hydraMember = [];
     hydraTotalItems;
+    hydraMember = [];
     hydraView;
     constructor(data) {
         this.ldContext = data['@context'];
         this.ldId = data['@id'];
         this.ldType = data['@type'];
-        //this.hydraMember = data['hydra:member']
         this.hydraTotalItems = data['hydra:totalItems'];
+        //this.hydraMember = data['hydra:member']
         this.hydraView = data['hydra:view'];
         data['hydra:member'].forEach((item) => {
             if (item instanceof Exercise) {

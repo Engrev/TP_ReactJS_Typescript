@@ -1,34 +1,13 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { NavLink } from 'react-router-dom';
-function importAll(r) {
-    // @ts-ignore
-    return r.keys().map(r);
-}
-const urls = importAll(require.context('../../img/exercises/thumbnails/', false, /\.(webp|svg)$/));
-//console.log(urls)
-const images = [];
-urls.forEach((url) => {
-    const key = url.match(/[0-9]{1,3}-[a-z_]+/);
-    if (key !== null) {
-        // @ts-ignore
-        images[`${key.toString()}.jpg`] = url;
-    }
-    else {
-        // @ts-ignore
-        images['default.svg'] = url;
-    }
-});
 function Library({ exercises }) {
-    return (_jsx("div", { className: "library-container", children: _jsxs("div", { className: "library", children: [_jsx("div", { className: "library-form", children: _jsx("h3", { children: "Library" }) }), _jsxs("div", { className: "library-exercises", children: [_jsx("p", { children: "All exercises" }), exercises.map((exercise) => (_jsx(NavLink, { 
+    const handleChange = (e) => { };
+    return (_jsx("div", { className: "library-container", children: _jsxs("div", { className: "library", children: [_jsxs("div", { className: "library-form", children: [_jsx("h3", { children: "Library" }), _jsxs("select", { className: "form-select mt-3", id: "select-equipment", defaultValue: "all_equipment", onChange: handleChange, children: [_jsx("option", { value: "all_equipment", children: "All Equipment" }), _jsx("option", { value: "none", children: "None" }), _jsx("option", { value: "barbell", children: "Barbell" }), _jsx("option", { value: "dumbbell", children: "Dumbbell" }), _jsx("option", { value: "kettlebell", children: "Kettlebell" }), _jsx("option", { value: "machine", children: "Machine" }), _jsx("option", { value: "plate", children: "Plate" }), _jsx("option", { value: "resistance_band", children: "Resistance Band" }), _jsx("option", { value: "suspension", children: "Suspension" }), _jsx("option", { value: "other", children: "Other" })] }), _jsxs("select", { className: "form-select mt-2", id: "select-muscles", defaultValue: "all_muscles", onChange: handleChange, children: [_jsx("option", { value: "all_muscles", children: "All Muscles" }), _jsx("option", { value: "abdominals", children: "Abdominals" }), _jsx("option", { value: "abductors", children: "Abductors" }), _jsx("option", { value: "adductors", children: "Adductors" }), _jsx("option", { value: "biceps", children: "Biceps" }), _jsx("option", { value: "lower_back", children: "Lower Back" }), _jsx("option", { value: "upper_back", children: "Upper Back" }), _jsx("option", { value: "cardio", children: "Cardio" }), _jsx("option", { value: "chest", children: "Chest" }), _jsx("option", { value: "calves", children: "Calves" }), _jsx("option", { value: "forearms", children: "Forearms" }), _jsx("option", { value: "glutes", children: "Glutes" }), _jsx("option", { value: "hamstrings", children: "Hamstrings" }), _jsx("option", { value: "lats", children: "Lats" }), _jsx("option", { value: "quadriceps", children: "Quadriceps" }), _jsx("option", { value: "shoulders", children: "Shoulders" }), _jsx("option", { value: "triceps", children: "Triceps" }), _jsx("option", { value: "traps", children: "Traps" }), _jsx("option", { value: "neck", children: "Neck" }), _jsx("option", { value: "full_body", children: "Full Body" }), _jsx("option", { value: "other", children: "Other" })] })] }), _jsxs("div", { className: "library-exercises", children: [_jsx("p", { children: "All exercises" }), exercises.map((exercise) => (_jsx(NavLink, { 
                             // @ts-ignore
                             to: `/exercises/${exercise.id}`, className: ({ isActive, isPending }) => isPending
                                 ? 'pending nav-link'
                                 : isActive
                                     ? 'active nav-link'
-                                    : 'nav-link', children: _jsxs("div", { className: "exercise", children: [exercise.image === 'default.svg' ? (_jsx("img", { src: images[
-                                        // @ts-ignore
-                                        'default.svg'], alt: exercise.name })) : (_jsx("img", { src: images[
-                                        // @ts-ignore
-                                        exercise.image.replace('mp4', 'jpg')], alt: exercise.name })), _jsxs("div", { className: "texts", children: [_jsx("h6", { children: exercise.name }), _jsx("p", { children: exercise.primaryMuscleGroup })] })] }) }, `exercise-${exercise.id}`)))] })] }) }));
+                                    : 'nav-link', children: _jsxs("div", { className: "exercise", children: [_jsx("img", { src: `/build/images/thumbnails/${exercise.image.replace('mp4', 'jpg')}`, alt: exercise.name }), _jsxs("div", { className: "texts", children: [_jsx("h6", { children: exercise.name }), _jsx("p", { children: exercise.primaryMuscleGroup })] })] }) }, `exercise-${exercise.id}`)))] })] }) }));
 }
 export default Library;
