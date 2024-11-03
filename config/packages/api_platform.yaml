@@ -1,6 +1,6 @@
 api_platform:
-    title: Hevy API
-    version: 1.0.7
+    title: TP ReactJS Typescript API
+    version: 1.0.9
     formats:
         jsonld: ['application/ld+json']
     docs_formats:

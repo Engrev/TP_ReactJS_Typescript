@@ -77,8 +77,8 @@ Encore
                 env: {
                     REACT_APP_API_URL: JSON.stringify(
                         Encore.isProduction()
-                            ? 'https://hevy.engrev.fr/api'
-                            : 'http://hevy.wsl/api',
+                            ? 'https://tp-react-typescript.engrev.fr/api'
+                            : 'http://tp_reactjs_typescript.wsl/api',
                     ),
                 },
             },

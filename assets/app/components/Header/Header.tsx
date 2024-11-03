@@ -5,7 +5,7 @@ function Header() {
         <header>
             <div className="content">
                 <div className="head">
-                    <Link to="/">HEVY</Link>
+                    <Link to="/">TP ReactJS Typescript</Link>
                 </div>
                 <div className="body">
                     <nav className="nav flex-column p-3">
