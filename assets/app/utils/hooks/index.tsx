@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { ApiResponse } from '../../class/ApiResponse'
 
-type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+/*type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 export function useFetch(
     method: Method,
@@ -43,7 +42,7 @@ export function useFetch(
     }, [url, requestOptions])
 
     return { responseData, isLoading, error }
-}
+}*/
 
 /*export function useFetch(
     url: string | URL | Request,
@@ -88,3 +87,15 @@ export function useFetch(
 
     return { isLoading, responseData, error }
 }*/
+
+/**
+ * Custom hook to manage a boolean toggle state.
+ *
+ * @param {boolean} initial - The initial state of the toggle, defaults to false.
+ * @return {[boolean, function]} An array containing the current state and a toggle function to invert the state.
+ */
+export function useToggle(initial = false) {
+    const [state, setState] = useState(initial)
+    const toggle = () => setState(v => !v)
+    return [state, toggle];
+}

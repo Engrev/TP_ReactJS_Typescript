@@ -9,13 +9,13 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-    margin-bottom: 16px;
+    color: white;
+    margin: 0;
 }
-#exercises h3 {
-    font-weight: 500;
+#exercises .library-container .library .library-form > h2,
+#exercises .exercise-container .statistics > h2 {
     font-size: 18px;
     line-height: 28px;
-    margin: 0;
 }
 
 #exercises .library-container { position: fixed; width: 330px; height: 100%; }
@@ -36,7 +36,19 @@
     padding: 16px;
     border-bottom: 1px solid var(--exercise-border-color);
 }
-#exercises .library-container .library .library-form .form-select { background-color: transparent; color: white; border-color: var(--exercise-border-color); }
+#exercises .library-container .library .library-form .form-select {
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    appearance: none;
+    outline: none;
+    /*background-image: url(data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg width='30px' height='30px' viewBox='0 0 30 30' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><title>chevron-down-accent</title><g id='chevron-down-accent' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' stroke-linecap='round'><polyline id='Path-23' stroke='%231D83EA' stroke-width='1.5' points='11 13 15.3044891 17.3044891 19.6089783 13'></polyline></g></svg>);
+    background-repeat: no-repeat;
+    background-position-x: 100%;*/
+    background-color: #1F2022;
+    color: white;
+    border: 1px solid #42454A;
+}
 #exercises .library-container .library .library-exercises { padding: 16px 8px; overflow-y: auto; }
 #exercises .library-container .library .library-exercises > p {
     font-size: 16px;
@@ -100,7 +112,7 @@
     /* 24px (top container) + 48px (h1) + 24px (mb library) = 96px + 1px (border) */
     height: calc(100vh - (var(--exercise-library-top)*2) - 48px - 1px);
 }
-#exercises .exercise-container .select-exercise > svg { color: var(--theme-primary); font-size: 3em; }
+#exercises .exercise-container .select-exercise > i { color: var(--theme-primary); font-size: 3em; }
 #exercises .exercise-container .select-exercise > h6 {
     font-size: 16px;
     font-weight: 500;

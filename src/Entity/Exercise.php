@@ -21,7 +21,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[UniqueEntity(fields: "name", message: "Un exercice existe déjà avec ce nom.")]
 #[ApiResource(
     operations: [
-        new GetCollection(),
+        new GetCollection(
+            paginationEnabled: false
+        ),
         new Post(
             security: "is_granted('ROLE_ADMIN')"
         ),

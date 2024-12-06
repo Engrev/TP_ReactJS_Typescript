@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Link, NavLink } from 'react-router-dom';
 function Header() {
-    return (_jsx("header", { children: _jsxs("div", { className: "content", children: [_jsx("div", { className: "head", children: _jsx(Link, { to: "/", children: "HEVY" }) }), _jsxs("div", { className: "body", children: [_jsxs("nav", { className: "nav flex-column p-3", children: [_jsxs(NavLink, { to: "/", className: ({ isActive, isPending }) => isPending
+    return (_jsx("header", { children: _jsxs("div", { className: "content", children: [_jsx("div", { className: "head", children: _jsx(Link, { to: "/", children: "TP ReactJS Typescript" }) }), _jsxs("div", { className: "body", children: [_jsxs("nav", { className: "nav flex-column p-3", children: [_jsxs(NavLink, { to: "/", className: ({ isActive, isPending }) => isPending
                                         ? 'pending nav-link'
                                         : isActive
                                             ? 'active nav-link'

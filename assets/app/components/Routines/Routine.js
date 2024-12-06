@@ -1,37 +1,40 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Routine } from '../../class/Routine';
-import { Loader } from '../Loader/Loader';
-function RoutineComponent({ routineUri }) {
-    const url = process.env.REACT_APP_API_URL + routineUri.replace('/api', '');
-    const [dataRoutine, setDataRoutine] = useState({});
-    const [isLoadingRoutine, setLoadingRoutine] = useState(true);
-    const [errorRoutine, setErrorRoutine] = useState(false);
-    useEffect(() => {
-        if (!url)
-            return;
-        setLoadingRoutine(true);
-        async function fetchData() {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setDataRoutine(new Routine(data));
-            }
-            catch (err) {
-                //console.error(err)
-                setErrorRoutine(true);
-            }
-            finally {
-                setLoadingRoutine(false);
-            }
-        }
-        fetchData();
-    }, [url]);
-    //console.info(dataRoutine)
-    // @ts-ignore
-    const routine = dataRoutine;
-    //console.info(routine)
-    return (_jsx(_Fragment, { children: isLoadingRoutine ? (_jsx("div", { className: "d-flex justify-content-center", children: _jsx(Loader, {}) })) : (_jsx("div", { className: "routine", children: _jsx(Link, { to: `/routines/${routine.id}`, children: _jsxs("div", { className: "routine-content", children: [_jsx("p", { children: routine.title }), _jsx("i", { className: "fa-light fa-ellipsis", role: "button" })] }) }, `routine-${routine.id}`) })) }));
+import { useQuery } from '@tanstack/react-query';
+import { Resource } from '../../ApiResponse';
+const API_URL = process.env.REACT_APP_API_URL;
+function LoadingPlaceholder() {
+    return (_jsx("div", { className: "routine", children: _jsx("a", { href: "#", children: _jsx("div", { className: "routine-content", children: _jsx("p", { className: "placeholder-glow", children: _jsx("span", { className: "placeholder col-6" }) }) }) }) }));
 }
-export default RoutineComponent;
+/**
+ * Fetches routine data and displays it using a loading placeholder during the fetch.
+ * Utilizes a query to retrieve routine information and renders a set of links with the fetched data.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} props.routineUri - The URI used to fetch the routine data.
+ *
+ * @return {JSX.Element} A React component that conditionally renders a loading placeholder or routine data.
+ */
+function Routine({ routineUri }) {
+    const url = API_URL + routineUri.replace('/api', '');
+    const { isLoading, data } = useQuery({
+        queryKey: ['routine'],
+        queryFn: () => getRoutine(url),
+        refetchOnWindowFocus: false,
+        initialData: new Resource([])
+    });
+    //console.log(data)
+    const routine = new Resource(data);
+    //console.log(routine)
+    return _jsx(_Fragment, { children: isLoading ? (_jsx(LoadingPlaceholder, {})) : (_jsx("div", { className: "routine", children: _jsx(Link
+            // @ts-ignore
+            , { 
+                // @ts-ignore
+                to: `/routines/${routine.attributes.id}`, children: _jsxs("div", { className: "routine-content", children: [_jsx("p", { children: 
+                            // @ts-ignore
+                            routine.attributes.title }), _jsx("i", { className: "fa-light fa-ellipsis", role: "button" })] }) }, `routine-${routine.attributes.id}`) })) });
+}
+function getRoutine(url) {
+    return fetch(url).then((response) => response.json());
+}
+export default Routine;

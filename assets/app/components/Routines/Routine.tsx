@@ -1,64 +1,77 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { Routine } from '../../class/Routine'
-import { Loader } from '../Loader/Loader'
-import FoldersComponent from './Folders'
+import { useQuery } from '@tanstack/react-query'
+import { Resource } from '../../ApiResponse'
 
 interface RoutineProps {
-    routineUri: string
+    routineUri: string;
 }
 
-function RoutineComponent({ routineUri }: RoutineProps) {
-    const url = process.env.REACT_APP_API_URL + routineUri.replace('/api', '')
-    const [dataRoutine, setDataRoutine] = useState({})
-    const [isLoadingRoutine, setLoadingRoutine] = useState(true)
-    const [errorRoutine, setErrorRoutine] = useState(false)
-    useEffect(() => {
-        if (!url) return
-        setLoadingRoutine(true)
-        async function fetchData() {
-            try {
-                const response = await fetch(url)
-                const data = await response.json()
-                setDataRoutine(new Routine(data))
-            } catch (err) {
-                //console.error(err)
-                setErrorRoutine(true)
-            } finally {
-                setLoadingRoutine(false)
-            }
-        }
-        fetchData()
-    }, [url])
-    //console.info(dataRoutine)
-    // @ts-ignore
-    const routine: Routine = dataRoutine
-    //console.info(routine)
+const API_URL = process.env.REACT_APP_API_URL;
 
+function LoadingPlaceholder() {
     return (
-        <>
-            {isLoadingRoutine ? (
-                <div className="d-flex justify-content-center">
-                    <Loader />
+        <div className="routine">
+            <a href="#">
+                <div className="routine-content">
+                    <p className="placeholder-glow">
+                        <span className="placeholder col-6"></span>
+                    </p>
                 </div>
-            ) : (
-                <div className="routine">
-                    <Link
-                        to={`/routines/${routine.id}`}
-                        key={`routine-${routine.id}`}
-                    >
-                        <div className="routine-content">
-                            <p>{routine.title}</p>
-                            <i
-                                className="fa-light fa-ellipsis"
-                                role="button"
-                            ></i>
-                        </div>
-                    </Link>
-                </div>
-            )}
-        </>
-    )
+            </a>
+        </div>
+    );
 }
 
-export default RoutineComponent
+/**
+ * Fetches routine data and displays it using a loading placeholder during the fetch.
+ * Utilizes a query to retrieve routine information and renders a set of links with the fetched data.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} props.routineUri - The URI used to fetch the routine data.
+ *
+ * @return {JSX.Element} A React component that conditionally renders a loading placeholder or routine data.
+ */
+function Routine({ routineUri }: RoutineProps) {
+    const url = API_URL + routineUri.replace('/api', '')
+    const { isLoading, data } = useQuery({
+        queryKey: ['routine'],
+        queryFn: () => getRoutine(url),
+        refetchOnWindowFocus: false,
+        initialData: new Resource([])
+    })
+    //console.log(data)
+    const routine = new Resource(data)
+    //console.log(routine)
+
+    return <>
+        {isLoading ? (
+            <LoadingPlaceholder />
+        ) : (
+            <div className="routine">
+                <Link
+                    // @ts-ignore
+                    to={`/routines/${routine.attributes.id}`}
+                    // @ts-ignore
+                    key={`routine-${routine.attributes.id}`}
+                >
+                    <div className="routine-content">
+                        <p>{
+                            // @ts-ignore
+                            routine.attributes.title
+                        }</p>
+                        <i
+                            className="fa-light fa-ellipsis"
+                            role="button"
+                        ></i>
+                    </div>
+                </Link>
+            </div>
+        )}
+    </>
+}
+
+function getRoutine(url: string) {
+    return fetch(url).then((response) => response.json())
+}
+
+export default Routine

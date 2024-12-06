@@ -1,6 +1,12 @@
+## [v1.1.0](https://github.com/Engrev/TP_ReactJS_Typescript/releases/tag/v1.1.0)
+
+### Refactoring ♻️🎨⚡️🔥📝
+
+> Released on 2024-12-06
+
 ## [v1.0.9](https://github.com/Engrev/TP_ReactJS_Typescript/releases/tag/v1.0.9)
 
-### [Change project name]()
+### [Change project name](https://github.com/Engrev/TP_ReactJS_Typescript/commit/8ab62685cbfa8e68862556d21146db133ba3490a)
 
 > Released on 2024-11-03
 

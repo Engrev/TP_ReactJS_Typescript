@@ -1,10 +1,8 @@
-import { Exercise } from '../../class/Exercise'
-
-interface TrainingCardProps {
+/*interface TrainingCardProps {
     exercises: Array<Exercise | object>
-}
+}*/
 
-function TrainingCard({ exercises }: TrainingCardProps) {
+function TrainingCard(/*{ exercises }: TrainingCardProps*/) {
     return (
         <div className="card">
             <div className="card-body">

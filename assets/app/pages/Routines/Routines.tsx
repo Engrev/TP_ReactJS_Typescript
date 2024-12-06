@@ -1,54 +1,45 @@
 import { NavLink } from 'react-router-dom'
-import ModalPortal from '../../components/Modal/ModalPortal'
-import { useEffect, useState } from 'react'
-import { ApiResponse } from '../../class/ApiResponse'
-import { Folder } from '../../class/Folder'
-import { Loader } from '../../components/Loader/Loader'
-import FoldersComponent from '../../components/Routines/Folders'
 import './routines.css'
+import { Collection, Resource } from '../../ApiResponse'
+import Folder from '../../components/Routines/Folder'
+import { useQuery } from '@tanstack/react-query'
+import NewFolderModal from '../../components/Routines/NewFolderModal'
+import { useToggle } from '../../utils/hooks'
+
+const FOLDERS_URL = `${process.env.REACT_APP_API_URL}/folders`
 
 function Routines() {
-    const [showModal, setShowModal] = useState(false)
-    const url = `${process.env.REACT_APP_API_URL}/folders`
-    const [dataFolders, setDataFolders] = useState({})
-    const [isLoadingFolders, setLoadingFolders] = useState(true)
-    const [errorFolders, setErrorFolders] = useState(false)
-    useEffect(() => {
-        if (!url) return
-        setLoadingFolders(true)
-        async function fetchData() {
-            try {
-                const response = await fetch(url)
-                const data = await response.json()
-                setDataFolders(new ApiResponse(data))
-            } catch (err) {
-                //console.error(err)
-                setErrorFolders(true)
-            } finally {
-                setLoadingFolders(false)
-            }
-        }
-        fetchData()
-    }, [url])
-    //console.info(dataFolders)
-    // @ts-ignore
-    const folders: Folder[] =
-        dataFolders instanceof ApiResponse ? dataFolders.hydraMember : []
-    //console.info(folders)
+    const { isLoading, data } = useQuery({
+        queryKey: ['folders'],
+        queryFn: getFolders,
+        refetchOnWindowFocus: false,
+        initialData: new Collection([]),
+    })
+    //console.log('DATA', data)
+    const folders = new Collection(data)
+    //console.log('FOLDERS', folders)
+    const [isCreation, toggleCreation] = useToggle(false)
 
-    if (errorFolders) {
+    const handleSave = (data: any) => {
+        const resourceData = new Resource(data)
+        folders?.members?.push(resourceData)
+        // @ts-ignore
+        toggleCreation()
+    }
+
+    /*if (error) {
         return (
             <section id="routines">
                 <div className="row">
                     <div className="col-12">
                         <h2>Routines</h2>
 
-                        <p>Oups il y a eu un problème.</p>
+                        <Alert type="danger">{error.toString()}</Alert>
                     </div>
                 </div>
             </section>
         )
-    }
+    }*/
 
     return (
         <section id="routines">
@@ -72,7 +63,9 @@ function Routines() {
                         </NavLink>
                         <div
                             className="nav-link"
-                            onClick={() => setShowModal(true)}
+                            role="button"
+                            // @ts-ignore
+                            onClick={toggleCreation}
                         >
                             <i className="fa-regular fa-folder-plus"></i>
                             <span>New Folder</span>
@@ -81,29 +74,37 @@ function Routines() {
                 </div>
                 <div className="col-12 col-lg-9">
                     <div className="list">
-                        {isLoadingFolders ? (
-                            <div className="d-flex justify-content-center">
-                                <Loader />
-                            </div>
+                        {isLoading ? (
+                            <Folder isLoading={true} />
                         ) : (
-                            <>
-                                {folders.length > 0 && (
-                                    <FoldersComponent folders={folders} />
-                                )}
-                            </>
+                            <div className="folders-area">
+                                {folders.members?.map((folder: any) => (
+                                    <Folder
+                                        key={folder.id}
+                                        id={folder.id}
+                                        title={folder.title}
+                                        routines={folder.routines}
+                                    />
+                                ))}
+                            </div>
                         )}
-                        <p>My Routines</p>
                     </div>
                 </div>
             </div>
 
-            <ModalPortal
-                modalName="NewFolder"
-                showModal={showModal}
-                setShowModal={setShowModal}
-            />
+            {isCreation && (
+                <NewFolderModal
+                    // @ts-ignore
+                    onClose={toggleCreation}
+                    onSave={handleSave}
+                />
+            )}
         </section>
     )
+}
+
+function getFolders() {
+    return fetch(FOLDERS_URL).then((response) => response.json())
 }
 
 export default Routines

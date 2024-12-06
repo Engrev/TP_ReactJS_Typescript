@@ -1,8 +1,3 @@
-import { useFetch } from '../../utils/hooks'
-import { ApiResponse } from '../../class/ApiResponse'
-import TrainingCard from '../../components/Home/TrainingCard'
-import { Training } from '../../class/Training'
-import { Loader } from '../../components/Loader/Loader'
 import './home.css'
 
 function Home() {

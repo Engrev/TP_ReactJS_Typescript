@@ -78,7 +78,7 @@ Encore
                     REACT_APP_API_URL: JSON.stringify(
                         Encore.isProduction()
                             ? 'https://tp-react-typescript.engrev.fr/api'
-                            : 'http://tp_reactjs_typescript.wsl/api',
+                            : 'http://tp-reactjs-typescript.wsl/api',
                     ),
                 },
             },

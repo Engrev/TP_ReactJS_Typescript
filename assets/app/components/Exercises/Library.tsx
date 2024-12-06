@@ -1,19 +1,37 @@
-import { NavLink } from 'react-router-dom'
-import { Exercise } from '../../class/Exercise'
 import { ChangeEvent } from 'react'
+import { Collection } from '../../ApiResponse'
+import { useQuery } from '@tanstack/react-query'
+import LibraryExercise from './LibraryExercise'
 
-interface LibraryProps {
-    exercises: Exercise[]
-}
+const EXERCISES_URL = `${process.env.REACT_APP_API_URL}/exercises`
 
-function Library({ exercises }: LibraryProps) {
+/**
+ * The `Library` component fetches and displays a collection of exercises.
+ * It provides filtering options by equipment type and muscle group.
+ *
+ * It uses the `useQuery` hook to fetch exercise data and renders a list of exercises,
+ * along with loading indicators.
+ *
+ * @return {JSX.Element} A React component that displays a library of exercises with filtering options.
+ */
+function Library() {
+    const { isLoading, data } = useQuery({
+        queryKey: ['exercises'],
+        queryFn: getExercises,
+        refetchOnWindowFocus: false,
+        initialData: new Collection([]),
+    })
+    //console.log('DATA', data)
+    const exercises = new Collection(data)
+    //console.log('EXERCISES', exercises)
+
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {}
 
     return (
         <div className="library-container">
             <div className="library">
                 <div className="library-form">
-                    <h3>Library</h3>
+                    <h2>Library</h2>
                     <select
                         className="form-select mt-3"
                         id="select-equipment"
@@ -62,35 +80,28 @@ function Library({ exercises }: LibraryProps) {
                 </div>
                 <div className="library-exercises">
                     <p>All exercises</p>
-                    {exercises.map((exercise) => (
-                        <NavLink
-                            key={`exercise-${exercise.id}`}
-                            // @ts-ignore
-                            to={`/exercises/${exercise.id}`}
-                            className={({ isActive, isPending }) =>
-                                isPending
-                                    ? 'pending nav-link'
-                                    : isActive
-                                      ? 'active nav-link'
-                                      : 'nav-link'
-                            }
-                        >
-                            <div className="exercise">
-                                <img
-                                    src={`/build/images/thumbnails/${exercise.image.replace('mp4', 'jpg')}`}
-                                    alt={exercise.name}
-                                />
-                                <div className="texts">
-                                    <h6>{exercise.name}</h6>
-                                    <p>{exercise.primaryMuscleGroup}</p>
-                                </div>
-                            </div>
-                        </NavLink>
-                    ))}
+
+                    {isLoading ? (
+                        <LibraryExercise isLoading={true} />
+                    ) : (
+                        exercises.members?.map((exercise: any) => (
+                            <LibraryExercise
+                                key={exercise.id}
+                                id={exercise.id}
+                                name={exercise.name}
+                                primaryMuscleGroup={exercise.primaryMuscleGroup}
+                                image={exercise.image}
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>
     )
+}
+
+function getExercises() {
+    return fetch(EXERCISES_URL).then((response) => response.json())
 }
 
 export default Library
